@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Maths Lotto Tumbler</title>
+
+  <link rel="stylesheet" href="LottoTumblerStyles.css" />
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Three.js (ES module via importmap) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.module.js"
+    }
+  }
+  </script>
+
+  <!-- Cannon-es physics engine -->
+  <script type="module">
+      import * as CANNON from "https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/cannon-es.js";
+      window.CANNON = CANNON;
+  </script>
+
+  <!-- OrbitControls (uses the import map for 'three') -->
+  <script type="module">
+      import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.155.0/examples/jsm/controls/OrbitControls.js";
+      window.OrbitControls = OrbitControls;
+  </script>
+
+  <!-- Your script -->
+  <script type="module" src="LottoTumblerScript.js"></script>
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- TUMBLER -->
+    <div class="panel tumbler-wrap" id="viewer">
+      <div class="funnel"></div>
+      <!-- canvas will be created by Three.js inside JS -->
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="panel controls">
+
+      <!-- Number of Balls Slider -->
+      <div class="row">
+        <label for="ballCountSlider">Number of balls: <span id="ballCountLabel">30</span></label>
+        <input type="range" id="ballCountSlider" min="1" max="1000" value="30">
+      </div>
+
+      <!-- Replacement Toggle -->
+      <div class="row">
+        <label>Replacement</label>
+        <label class="switch">
+          <input type="checkbox" id="withReplacement" checked>
+          <span class="slider"></span>
+        </label>
+        <span id="replacementLabel">With replacement</span>
+      </div>
+
+      <!-- Spin Button -->
+      <div class="row">
+        <button id="spinBtn" class="primary">Spin</button>
+      </div>
+
+      <!-- Picked Results -->
+      <div class="row">
+        <label>Picked balls</label>
+        <div class="selected-list" id="picked">(none)</div>
+      </div>
+
+      <!-- Hidden inputs for JS -->
+      <input id="ballCount" type="hidden" value="30">
+      <input id="spinPower" type="hidden" value="0.7">
+      <input id="autoRotations" type="hidden" value="360">
+
+    </div>
+  </div>
+</body>
+</html>
